@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: dbt_raw
+    database: OBM_DEV_OBM
+    schema: DBT_RAW
+    tables:
+      - name: customers_raw
+        loaded_at_field: loaded_at
+        config:
+          freshness:
+            warn_after: {count: 10, period: minute}
+            error_after: {count: 60, period: minute}
+      - name: accounts_raw
+        loaded_at_field: loaded_at
+        config:
+          freshness:
+            warn_after: {count: 10, period: minute}
+            error_after: {count: 60, period: minute}
+      - name: transactions_raw
+        loaded_at_field: loaded_at
+        config:
+          freshness:
+            warn_after: {count: 10, period: minute}
+            error_after: {count: 60, period: minute}
+      - name: branches_raw
+        loaded_at_field: loaded_at
+        config:
+          freshness:
+            warn_after: {count: 1440, period: minute}
+            error_after: {count: 10080, period: minute}
