@@ -1,0 +1,18 @@
+version: 2
+
+snapshots:
+  - name: snap_dim_customer
+    description: SCD Type 2 history of customer dimension, tracked via dbt_loaded_at.
+    columns:
+      - name: customer_id
+        description: Business key. Must be unique per active (currently open) version.
+        tests:
+          - not_null
+
+  - name: snap_dim_account
+    description: SCD Type 2 history of account dimension, tracked via dbt_loaded_at.
+    columns:
+      - name: account_id
+        description: Business key. Must be unique per active (currently open) version.
+        tests:
+          - not_null

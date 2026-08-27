@@ -1,0 +1,8 @@
+      - name: customer_id
+        description: Business key. Exactly one currently-open version per customer_id.
+        tests:
+          - not_null
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - customer_id
+              where: "dbt_valid_to is null"
