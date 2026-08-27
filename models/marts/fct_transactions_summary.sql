@@ -1,11 +1,13 @@
 {{
+
     config(
         materialized='incremental',
         unique_key='summary_key',
-        incremental_strategy='merge'
+        incremental_strategy='merge',
+        post_hook="grant select on {{ this }} to role PUBLIC"
     )
 }}
-
+  
 with transactions as (
     select * from {{ ref('stg_fact_transactions') }}
     {% if is_incremental() %}
