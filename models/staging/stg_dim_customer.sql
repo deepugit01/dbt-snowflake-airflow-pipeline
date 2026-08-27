@@ -8,13 +8,7 @@ flattened as (
         raw_data:name::string     as customer_name,
         raw_data:email::string    as email,
 
-        coalesce(
-            try_to_date(raw_data:dob::string, 'YYYY-MM-DD'),
-            try_to_date(raw_data:dob::string, 'DD/MM/YYYY'),
-            try_to_date(raw_data:dob::string, 'MM-DD-YYYY'),
-            try_to_date(raw_data:dob::string, 'DD-MON-YYYY'),
-            try_to_date(raw_data:dob::string, 'YYYYMMDD')
-        ) as dob,
+        {{ safe_cast_date("raw_data:dob::string") }} as dob,
 
         raw_data:pan_number::string as pan_number,
         raw_data:segment::string    as customer_segment,

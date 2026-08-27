@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: transaction_summary_dashboard
+    label: Transaction Summary Dashboard
+    type: dashboard
+    maturity: medium
+    url: https://example.com/dashboards/transaction-summary
+    description: >
+      Executive-facing dashboard showing daily transaction volume and value
+      by customer segment and branch, built on fct_transactions_summary.
+    depends_on:
+      - ref('fct_transactions_summary')
+    owner:
+      name: Data Engineering Team
+      email: data-eng@example.com

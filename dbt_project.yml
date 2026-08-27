@@ -19,5 +19,7 @@ models:
   snowflake_realtime_dbt_prod:
     staging:
       +materialized: view
+      +tags: ['staging']
     marts:
       +materialized: table
+      +tags: ['marts', 'daily']

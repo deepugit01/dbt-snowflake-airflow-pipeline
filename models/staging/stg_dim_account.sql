@@ -8,13 +8,7 @@ flattened as (
         raw_data:customer_id::int as customer_id,
         raw_data:account_type::string as account_type,
 
-        coalesce(
-            try_to_date(raw_data:opened_date::string, 'YYYY-MM-DD'),
-            try_to_date(raw_data:opened_date::string, 'DD/MM/YYYY'),
-            try_to_date(raw_data:opened_date::string, 'MM-DD-YYYY'),
-            try_to_date(raw_data:opened_date::string, 'DD-MON-YYYY'),
-            try_to_date(raw_data:opened_date::string, 'YYYYMMDD')
-        ) as opened_date,
+        {{ safe_cast_date("raw_data:opened_date::string") }} as opened_date,
 
         raw_data:status::string    as account_status,
         raw_data:branch_id::int    as branch_id,
